@@ -5,7 +5,7 @@ export const handlers = [
 
     rest.get(API_URL, (req, res, ctx) => {
         return res(
-            ctx.status(200)
+            ctx.status(200), ctx.json()
            )
     }),
   ]
