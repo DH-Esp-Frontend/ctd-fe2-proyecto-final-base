@@ -1,4 +1,7 @@
 
+/**
+ * 2 random quotes to with the handlers to use during the testing mock
+ */
 
 const randonQuote = {
     "quote": "Well, I'm better than dirt. Well, most kinds of dirt. I mean not that fancy store bought dirt. That stuffs loaded with nutrients. I.. I can't compete with that stuff.",
