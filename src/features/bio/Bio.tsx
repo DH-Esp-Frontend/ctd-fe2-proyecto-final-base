@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { NombresSimpsons, INFO_SIMPSONS } from "./constants";
 import styles from "./styles.module.css";
+import { BotonBio } from "./Styled";
 
 const Bio = () => {
   const [bioActiva, setBioActiva] = useState(
@@ -9,6 +10,41 @@ const Bio = () => {
 
   const onClick: (nombre: NombresSimpsons) => void = (nombre) =>
     setBioActiva(INFO_SIMPSONS[nombre]);
+   
+
+    // const Bio = () => {
+    //   const [isActive, setIsActive] = useState(false);
+    
+    //   const handleClick = () => {
+    //     setIsActive(!isActive);
+    //   };
+    
+    //   return (
+    //     <div>
+    //       <BotonBio isActive={isActive} onClick={handleClick}>
+    //         Mi botón
+    //       </BotonBio>
+    //     </div>
+    //   );
+    // };
+   
+  //  const crearBotones = () => {
+  //   const [active, setActive] = useState(false);
+  //   const handlerclick = () => {
+  //     setActive(!active);
+  //   }
+  //     return (
+  //     Object.keys(INFO_SIMPSONS).map((nombre: string) => {
+      
+  //     <BotonBio 
+  //     isActive ={active} onClick ={handlerclick}
+  //       key={nombre as string}
+  //       onClick={() => onClick(nombre as NombresSimpsons)}
+  //       {nombre}>
+  //     </BotonBio>}
+        
+  //        )
+  //        ) };    
 
   const crearBotones = () => {
     return Object.keys(INFO_SIMPSONS).map((nombre: string) => (
@@ -25,7 +61,6 @@ const Bio = () => {
       </button>
     ));
   };
-
   return (
     <div className={styles.bioContainer}>
       <div className={styles.contenedorBotones}>{crearBotones()}</div>
@@ -44,6 +79,6 @@ const Bio = () => {
       </div>
     </div>
   );
-};
+  };
 
 export default Bio;
