@@ -23,11 +23,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "test-coverage": "react-scripts test --env=jsdom --wachAll=false --coverage"
-  },
-  "jest": {
-    "collectCoverage": true
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -49,7 +45,7 @@
   },
   "devDependencies": {
     "@types/styled-components": "^5.1.25",
-    "jest": "^27.5.1",
     "msw": "^1.2.1"
   }
 }
+   

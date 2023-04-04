@@ -3,7 +3,8 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom/extend-expect';
-import {server} from './mock/server.js'
+import { server } from './mock/server';
+
 
 beforeAll(() => server.listen())
 afterEach(() => server.resetHandlers())

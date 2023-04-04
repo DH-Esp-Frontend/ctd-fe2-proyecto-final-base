@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NombresSimpsons, INFO_SIMPSONS } from "./constants";
 import styles from "./styles.module.css";
-import { BotonBio } from "./Styled";
+import { Boton } from "./Styled";
 
 const Bio = () => {
   const [bioActiva, setBioActiva] = useState(
@@ -11,54 +11,20 @@ const Bio = () => {
   const onClick: (nombre: NombresSimpsons) => void = (nombre) =>
     setBioActiva(INFO_SIMPSONS[nombre]);
    
-
-    // const Bio = () => {
-    //   const [isActive, setIsActive] = useState(false);
-    
-    //   const handleClick = () => {
-    //     setIsActive(!isActive);
-    //   };
-    
-    //   return (
-    //     <div>
-    //       <BotonBio isActive={isActive} onClick={handleClick}>
-    //         Mi botón
-    //       </BotonBio>
-    //     </div>
-    //   );
-    // };
-   
-  //  const crearBotones = () => {
-  //   const [active, setActive] = useState(false);
-  //   const handlerclick = () => {
-  //     setActive(!active);
-  //   }
-  //     return (
-  //     Object.keys(INFO_SIMPSONS).map((nombre: string) => {
-      
-  //     <BotonBio 
-  //     isActive ={active} onClick ={handlerclick}
-  //       key={nombre as string}
-  //       onClick={() => onClick(nombre as NombresSimpsons)}
-  //       {nombre}>
-  //     </BotonBio>}
-        
-  //        )
-  //        ) };    
-
+ 
   const crearBotones = () => {
     return Object.keys(INFO_SIMPSONS).map((nombre: string) => (
-      <button
+      <Boton
         key={nombre as string}
         onClick={() => onClick(nombre as NombresSimpsons)}
-        className={
-          bioActiva.id === nombre
-            ? styles.botonBioActivo
-            : styles.botonBioInactivo
+        isActive ={
+          bioActiva.id === nombre 
+            ? true 
+            : false
         }
       >
         {nombre}
-      </button>
+      </Boton>
     ));
   };
   return (
