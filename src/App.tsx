@@ -3,6 +3,12 @@ import Cita from "./features/quote/Cita";
 import "./App.css";
 import Bio from "./features/bio/Bio";
 import Noticias from "./features/news/Noticias";
+import { obtenerNoticias } from "./features/news/fakeRest";
+import INoticiasProvider from "./features/news/NoticiasProvider";
+
+  const noticiasProvider: INoticiasProvider = {
+  obtenerNoticias: obtenerNoticias,
+  };
 
 function App() {
   return (
@@ -19,7 +25,7 @@ function App() {
         <Bio />
       </section>
       <section className="App-news">
-        <Noticias />
+        <Noticias noticiasProvider={noticiasProvider} />
       </section>
     </div>
   );

@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { SuscribeImage, CloseButton as Close } from "../../assets";
-import { obtenerNoticias } from "./fakeRest";
+import Noticia, {INoticiasNormalizadas}from "./Noticia";
+import INoticiasProvider from "./NoticiasProvider";
 import {
   CloseButton,
   TarjetaModal,
@@ -21,53 +22,44 @@ import {
   CotenedorTexto,
 } from "./styled";
 
-export interface INoticiasNormalizadas {
-  id: number;
-  titulo: string;
-  descripcion: string;
-  fecha: number | string;
-  esPremium: boolean;
-  imagen: string;
-  descripcionCorta?: string;
-}
+/**
+* Componente para mostrar listas de noticias y ver detalles en un modal
+@param {Object} props
+@param {INoticiasProvider} props.noticiasProvider
+ */
 
-const Noticias = () => {
+const Noticias = ({ noticiasProvider }: { noticiasProvider:INoticiasProvider }) => {
   const [noticias, setNoticias] = useState<INoticiasNormalizadas[]>([]);
   const [modal, setModal] = useState<INoticiasNormalizadas | null>(null);
+ 
+  /**
+  * Función que obtiene la información de las noticias.
+  * @function
+  */
 
-  useEffect(() => {
-    const obtenerInformacion = async () => {
-      const respuesta = await obtenerNoticias();
+const obtenerInformacionNoticias = useCallback(async () => {
+  const noticiasApi = await noticiasProvider.obtenerNoticias();
+  const noticiasNormalizadas = noticiasApi.map((noticia) => Noticia(noticia));
+  setNoticias(noticiasNormalizadas);
+}, [noticiasProvider]);
 
-      const data = respuesta.map((n) => {
-        const titulo = n.titulo
-          .split(" ")
-          .map((str) => {
-            return str.charAt(0).toUpperCase() + str.slice(1);
-          })
-          .join(" ");
+useEffect(() => {
+  const actualizarNoticias = async () => {
+    await obtenerInformacionNoticias();
+  };
+  actualizarNoticias();
+}, [obtenerInformacionNoticias]);
+/**
+ @function
+ */
+  const handleSubscribe = () => {
+    setTimeout(() => {
+      alert("Suscripto!");
+      setModal(null);
+    }, 1000);
+  };
 
-        const ahora = new Date();
-        const minutosTranscurridos = Math.floor(
-          (ahora.getTime() - n.fecha.getTime()) / 60000
-        );
 
-        return {
-          id: n.id,
-          titulo,
-          descripcion: n.descripcion,
-          fecha: `Hace ${minutosTranscurridos} minutos`,
-          esPremium: n.esPremium,
-          imagen: n.imagen,
-          descripcionCorta: n.descripcion.substring(0, 100),
-        };
-      });
-
-      setNoticias(data);
-    };
-
-    obtenerInformacion();
-  }, []);
 
   return (
     <ContenedorNoticias>
@@ -77,7 +69,7 @@ const Noticias = () => {
           <TarjetaNoticia>
             <ImagenTarjetaNoticia src={n.imagen} />
             <TituloTarjetaNoticia>{n.titulo}</TituloTarjetaNoticia>
-            <FechaTarjetaNoticia>{n.fecha}</FechaTarjetaNoticia>
+            <FechaTarjetaNoticia>{n.fecha.toLocaleDateString()}</FechaTarjetaNoticia>
             <DescripcionTarjetaNoticia>
               {n.descripcionCorta}
             </DescripcionTarjetaNoticia>
@@ -99,12 +91,7 @@ const Noticias = () => {
                     nuestros personajes favoritos.
                   </DescripcionModal>
                   <BotonSuscribir
-                    onClick={() =>
-                      setTimeout(() => {
-                        alert("Suscripto!");
-                        setModal(null);
-                      }, 1000)
-                    }
+                    onClick={handleSubscribe}
                   >
                     Suscríbete
                   </BotonSuscribir>

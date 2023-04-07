@@ -1,3 +1,12 @@
+/**
+@interface INoticias
+@property {number} id 
+@property {string} titulo 
+@property {string} descripcion 
+@property {Date} fecha 
+@property {boolean} esPremium 
+@property {string} imagen
+*/
 export interface INoticias {
   id: number;
   titulo: string;
@@ -7,6 +16,11 @@ export interface INoticias {
   imagen: string;
 }
 
+/**
+@function simularTiempoTranscurrido
+@param {number} decrementMiliseconds 
+@return {Date}
+*/
 const simularTiempoTranscurrido: (decrementMiliseconds: number) => Date = (
   decrementMiliseconds
 ) => {
