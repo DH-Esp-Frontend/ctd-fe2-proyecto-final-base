@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { rest } from "msw";
 import { API_URL } from "../../../app/constants";
 import { ICita } from "../types";
