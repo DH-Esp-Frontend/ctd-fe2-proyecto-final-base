@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { SuscribeImage, CloseButton as Close } from "../../assets";
 import { obtenerNoticias } from "./fakeRest";
