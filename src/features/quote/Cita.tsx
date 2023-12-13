@@ -27,8 +27,8 @@ function Cita() {
 
   return (
     <ContenedorCita>
-      <TextoCita>{obtenerMensaje(cita, estadoPedido)}</TextoCita>
-      <AutorCita>{personaje}</AutorCita>
+      <TextoCita data-testid="character-quote">{obtenerMensaje(cita, estadoPedido)}</TextoCita>
+      <AutorCita data-testid="character-name">{personaje}</AutorCita>
       <Input
         aria-label="Author Cita"
         value={valorInput}
