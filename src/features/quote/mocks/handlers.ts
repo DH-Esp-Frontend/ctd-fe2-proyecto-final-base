@@ -21,7 +21,7 @@ export const citaAlAzar: ICita = {
 
 export const handlers = [
   //array de peticiones
-  rest.get(API_URL, (req, res, ctx) => {
+  rest.get(API_URL, (req: { url: { searchParams: { get: (arg0: string) => any; }; }; }, res: (arg0: any, arg1: any) => any, ctx: { status: (arg0: number) => any; json: (arg0: ICita[]) => any; }) => {
     //url , funcion q recibe rec
     const citaFinal = req.url.searchParams.get("character")
       ? citaConNombre
